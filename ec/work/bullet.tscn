@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://hal5t15ylh56"]
+
+[ext_resource type="Script" path="res://ec/work/bullet.gd" id="1_ttr3p"]
+[ext_resource type="PackedScene" uid="uid://jqrx5nsqvx7e" path="res://ec/work/components/bullet_component.tscn" id="2_bbkph"]
+[ext_resource type="Script" path="res://ec/work/resources/gun_stats.gd" id="3_7cdd2"]
+
+[sub_resource type="Resource" id="Resource_j88in"]
+script = ExtResource("3_7cdd2")
+damage_per_bullet = 20.0
+knockback_force = 200.0
+stun_time = 3.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s4pp8"]
+size = Vector2(48, 16)
+
+[node name="Bullet" type="Node2D"]
+script = ExtResource("1_ttr3p")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.282353, 0.439216, 0.494118, 1)
+polygon = PackedVector2Array(-24, 8, -24, -8, 16, -8, 24, 0, 16, 8)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="BulletComponent" parent="." instance=ExtResource("2_bbkph")]
+gun_stats = SubResource("Resource_j88in")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletComponent"]
+shape = SubResource("RectangleShape2D_s4pp8")

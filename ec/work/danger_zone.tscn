@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dixj22lhmev8t"]
+
+[ext_resource type="PackedScene" uid="uid://cbq0b6r7mmj50" path="res://ec/work/components/hitbox_component.tscn" id="1_tlbr7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a2mly"]
+size = Vector2(192, 192)
+
+[node name="DangerZone" type="Node2D"]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(1, 0.0235294, 0.0823529, 1)
+polygon = PackedVector2Array(-96, -96, 96, -96, 96, 96, -96, 96)
+
+[node name="HitboxComponent" parent="." instance=ExtResource("1_tlbr7")]
+knockback_force = 200.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("RectangleShape2D_a2mly")

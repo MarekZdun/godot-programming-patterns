@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://54klikdx5bhm"]
+
+[ext_resource type="Script" path="res://ec/work/main.gd" id="1_5jso2"]
+[ext_resource type="PackedScene" uid="uid://brhqlvd0pk67n" path="res://ec/work/actor.tscn" id="2_6idmm"]
+[ext_resource type="PackedScene" path="res://ec/work/health_display.tscn" id="3_f1l7j"]
+[ext_resource type="PackedScene" uid="uid://dixj22lhmev8t" path="res://ec/work/danger_zone.tscn" id="3_x5dcj"]
+[ext_resource type="PackedScene" uid="uid://hal5t15ylh56" path="res://ec/work/bullet.tscn" id="5_m1j5f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6fejv"]
+size = Vector2(2048, 128)
+
+[node name="Main" type="Node"]
+script = ExtResource("1_5jso2")
+
+[node name="Actor" parent="." instance=ExtResource("2_6idmm")]
+position = Vector2(602, 308)
+
+[node name="DangerZone" parent="." instance=ExtResource("3_x5dcj")]
+position = Vector2(1056, 480)
+
+[node name="HealthDisplay" parent="." instance=ExtResource("3_f1l7j")]
+z_index = 1
+position = Vector2(598, 218)
+
+[node name="Bullet" parent="." instance=ExtResource("5_m1j5f")]
+position = Vector2(-40, 516)
+_speed = 1000.0
+metadata/_edit_group_ = true
+
+[node name="Floor" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(640, 640)
+shape = SubResource("RectangleShape2D_6fejv")
+
+[node name="Polygon2D" type="Polygon2D" parent="Floor"]
+color = Color(0.478431, 1, 0.384314, 1)
+polygon = PackedVector2Array(-384, 704, -384, 576, 1664, 576, 1664, 704)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "press LEFT/RIGHT arrows to move actor left/right"
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "press SPACE to make actor jump"
+
+[node name="Label3" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "press F to fire bullet"

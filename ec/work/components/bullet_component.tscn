@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://jqrx5nsqvx7e"]
+
+[ext_resource type="Script" path="res://ec/work/components/bullet_component.gd" id="1_jt5r8"]
+
+[node name="BulletComponent" type="Area2D"]
+script = ExtResource("1_jt5r8")

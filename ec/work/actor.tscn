@@ -1,0 +1,44 @@
+[gd_scene load_steps=10 format=3 uid="uid://brhqlvd0pk67n"]
+
+[ext_resource type="Script" path="res://ec/work/actor.gd" id="1_45td5"]
+[ext_resource type="Texture2D" uid="uid://bbvbulqlg2x74" path="res://icon.svg" id="2_mrsyp"]
+[ext_resource type="PackedScene" uid="uid://c4de44dxvoqhj" path="res://ec/work/components/health_component.tscn" id="3_47grc"]
+[ext_resource type="PackedScene" uid="uid://7sb8ih0yemqt" path="res://ec/work/components/hurtbox_component.tscn" id="4_b3hml"]
+[ext_resource type="PackedScene" uid="uid://df6tu4fvrpiif" path="res://ec/work/components/velocity_component.tscn" id="5_femdr"]
+[ext_resource type="PackedScene" uid="uid://cpda1lf4radvt" path="res://ec/work/components/controller_component.tscn" id="6_08vhh"]
+[ext_resource type="PackedScene" path="res://ec/work/components/status_receiver_component.tscn" id="7_yqfov"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3njmt"]
+size = Vector2(120, 120)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_irexl"]
+size = Vector2(120, 120)
+
+[node name="Actor" type="CharacterBody2D"]
+script = ExtResource("1_45td5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3njmt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_mrsyp")
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_47grc")]
+max_health = 100.0
+
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("_health_component", "_status_receiver_component") instance=ExtResource("4_b3hml")]
+_health_component = NodePath("../HealthComponent")
+_status_receiver_component = NodePath("../StatusReceiverComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+shape = SubResource("RectangleShape2D_irexl")
+
+[node name="StatusReceiverComponent" parent="." instance=ExtResource("7_yqfov")]
+attack_damage_mod = 0.5
+knockback_force_mod = 0.5
+stun_time_mod = 0.5
+
+[node name="VelocityComponent" parent="." instance=ExtResource("5_femdr")]
+
+[node name="ControllerComponent" parent="." node_paths=PackedStringArray("_velocity_component") instance=ExtResource("6_08vhh")]
+_velocity_component = NodePath("../VelocityComponent")
