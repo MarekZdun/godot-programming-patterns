@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://q06hcwoeqvy4"]
+
+[ext_resource type="Script" path="res://interface/work/main.gd" id="1_i73bd"]
+[ext_resource type="PackedScene" uid="uid://580h6xvusgvt" path="res://interface/work/actor.tscn" id="2_c52ed"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_i73bd")
+
+[node name="Actor" parent="." instance=ExtResource("2_c52ed")]
+position = Vector2(591, 295)
+metadata/_edit_group_ = true

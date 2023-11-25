@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="Common Patterns"
+config/tags=PackedStringArray("system")
 config/features=PackedStringArray("4.1", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Interface="*res://autoloads/interface.gd"
 
 [rendering]
 
