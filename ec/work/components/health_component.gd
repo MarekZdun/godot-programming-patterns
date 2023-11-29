@@ -2,7 +2,7 @@ class_name HealthComponent
 extends Node2D
 
 signal health_changed(health_update)
-signal died
+signal died(element)
 
 @export var max_health: float:
 	set(value):
@@ -25,11 +25,12 @@ var current_health: float:
 		health_changed.emit(health_update)
 		if !has_health_remaining() and !_has_died:
 			_has_died = true
-			died.emit()
+			died.emit(_element_damage)
 	get:
 		return current_health
 
 var _has_died: bool
+var _element_damage: StatusReceiverComponent.Element
 
 
 func _ready():
@@ -37,6 +38,7 @@ func _ready():
 	
 	
 func damage(attack_update: AttackUpdate) -> void:
+	_element_damage = attack_update.attack_element
 	current_health -= attack_update.attack_damage
 	
 	

@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://7sb8ih0yemqt" path="res://ec/work/components/hurtbox_component.tscn" id="4_b3hml"]
 [ext_resource type="PackedScene" uid="uid://df6tu4fvrpiif" path="res://ec/work/components/velocity_component.tscn" id="5_femdr"]
 [ext_resource type="PackedScene" uid="uid://cpda1lf4radvt" path="res://ec/work/components/controller_component.tscn" id="6_08vhh"]
-[ext_resource type="PackedScene" path="res://ec/work/components/status_receiver_component.tscn" id="7_yqfov"]
+[ext_resource type="PackedScene" uid="uid://ctivcyyqbgbk" path="res://ec/work/components/status_receiver_component.tscn" id="7_yqfov"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3njmt"]
 size = Vector2(120, 120)
@@ -34,9 +34,9 @@ _status_receiver_component = NodePath("../StatusReceiverComponent")
 shape = SubResource("RectangleShape2D_irexl")
 
 [node name="StatusReceiverComponent" parent="." instance=ExtResource("7_yqfov")]
-attack_damage_mod = 0.5
 knockback_force_mod = 0.5
 stun_time_mod = 0.5
+neutral_resistance = 0.5
 
 [node name="VelocityComponent" parent="." instance=ExtResource("5_femdr")]
 

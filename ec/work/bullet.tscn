@@ -6,6 +6,7 @@
 
 [sub_resource type="Resource" id="Resource_j88in"]
 script = ExtResource("3_7cdd2")
+attack_element = 0
 damage_per_bullet = 20.0
 knockback_force = 200.0
 stun_time = 3.0

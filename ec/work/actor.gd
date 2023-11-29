@@ -9,6 +9,7 @@ extends CharacterBody2D
 func _ready():
 	hurtbox_component.hit_by_bullet.connect(_on_hit_by_bullet)
 	hurtbox_component.hit_by_hitbox.connect(_on_hit_by_hitbox)
+	health_component.died.connect(_on_died)
 
 
 func _physics_process(delta):
@@ -20,16 +21,27 @@ func _physics_process(delta):
 		
 		
 func _on_hit_by_bullet(hit_context: BulletHitContext) -> void:
-	if velocity_component:
+	if velocity_component and hit_context.attack_update.attack_damage > 0:
 		velocity_component.knockback_request(hit_context.attack_update)
 
-	if controller_component:
+	if controller_component and hit_context.attack_update.attack_damage > 0:
 		controller_component.deactivate_for(hit_context.attack_update.stun_time)
 		
 		
 func _on_hit_by_hitbox(hit_context: HitboxHitContext) -> void:
-	if velocity_component:
+	if velocity_component and hit_context.attack_update.attack_damage > 0:
 		velocity_component.knockback_request(hit_context.attack_update)
 
-	if controller_component:
+	if controller_component and hit_context.attack_update.attack_damage > 0:
 		controller_component.deactivate_for(hit_context.attack_update.stun_time)
+		
+		
+func _on_died(element: StatusReceiverComponent.Element) -> void:
+	# it is a good place to display die animation according to element
+	var element_name: String
+	var keys := StatusReceiverComponent.Element.keys()
+	for key in keys:
+		if StatusReceiverComponent.Element[key] == element:
+			element_name = key
+			break
+	print("died from element: %s" % element_name)

@@ -10,6 +10,7 @@ func _ready():
 
 func get_attack() -> AttackUpdate:
 	var attack := AttackUpdate.new()
+	attack.attack_element = gun_stats.attack_element
 	attack.attack_damage = gun_stats.damage_per_bullet
 	attack.knockback_force = gun_stats.knockback_force
 	attack.attack_position = (owner as Node2D).global_position	# owner???
