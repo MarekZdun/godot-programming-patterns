@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://c6sfs6bae5cmw"]
+
+[ext_resource type="PackedScene" uid="uid://csugmkolhohwh" path="res://ec/work/components/interactable_area_2d_component.tscn" id="1_4uv4q"]
+[ext_resource type="Script" path="res://ec/work/fountain.gd" id="1_up3vc"]
+[ext_resource type="PackedScene" uid="uid://bhlsy7sq2bq4g" path="res://ec/work/components/focusable_component.tscn" id="3_h4x1i"]
+[ext_resource type="PackedScene" uid="uid://bc2e320g5a84h" path="res://ec/work/focusable_show_label_in_2d.tscn" id="4_ovnyc"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_t38l6"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+gravity = Vector3(0, 300, 0)
+initial_velocity_min = 150.0
+initial_velocity_max = 250.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 4.0
+scale_max = 8.0
+color = Color(0.0941176, 0.752941, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ujwad"]
+size = Vector2(128, 64)
+
+[node name="Fountain" type="Node2D"]
+script = ExtResource("1_up3vc")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(-8, 0)
+scale = Vector2(2, 5)
+color = Color(0.690196, 0.690196, 0.807843, 1)
+polygon = PackedVector2Array(4, 0, -28, -12.8, 36, -12.8)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(0, -65)
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_t38l6")
+lifetime = 0.8
+explosiveness = 0.12
+
+[node name="FocusableAnchor" type="Marker2D" parent="."]
+position = Vector2(0, -65)
+
+[node name="Interactable2dComponent" parent="." node_paths=PackedStringArray("agent", "focusable_component") instance=ExtResource("1_4uv4q")]
+agent = NodePath("..")
+focusable_component = NodePath("../FocusableComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable2dComponent"]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_ujwad")
+
+[node name="FocusableComponent" parent="." node_paths=PackedStringArray("focusable_parent") instance=ExtResource("3_h4x1i")]
+focusable_packed_scene = ExtResource("4_ovnyc")
+focusable_parent = NodePath("../FocusableAnchor")

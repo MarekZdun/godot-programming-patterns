@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://brhqlvd0pk67n"]
+[gd_scene load_steps=12 format=3 uid="uid://brhqlvd0pk67n"]
 
 [ext_resource type="Script" path="res://ec/work/actor.gd" id="1_45td5"]
 [ext_resource type="Texture2D" uid="uid://bbvbulqlg2x74" path="res://icon.svg" id="2_mrsyp"]
@@ -7,12 +7,16 @@
 [ext_resource type="PackedScene" uid="uid://df6tu4fvrpiif" path="res://ec/work/components/velocity_component.tscn" id="5_femdr"]
 [ext_resource type="PackedScene" uid="uid://cpda1lf4radvt" path="res://ec/work/components/controller_component.tscn" id="6_08vhh"]
 [ext_resource type="PackedScene" uid="uid://ctivcyyqbgbk" path="res://ec/work/components/status_receiver_component.tscn" id="7_yqfov"]
+[ext_resource type="PackedScene" uid="uid://c2xd1fexdyl4u" path="res://ec/work/components/interactor_area_2d_component.tscn" id="8_8g7ce"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3njmt"]
 size = Vector2(120, 120)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_irexl"]
 size = Vector2(120, 120)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dmmei"]
+radius = 90.0
 
 [node name="Actor" type="CharacterBody2D"]
 script = ExtResource("1_45td5")
@@ -42,3 +46,9 @@ neutral_resistance = 0.5
 
 [node name="ControllerComponent" parent="." node_paths=PackedStringArray("_velocity_component") instance=ExtResource("6_08vhh")]
 _velocity_component = NodePath("../VelocityComponent")
+
+[node name="Interactor2dComponent" parent="." node_paths=PackedStringArray("agent") instance=ExtResource("8_8g7ce")]
+agent = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactor2dComponent"]
+shape = SubResource("CircleShape2D_dmmei")

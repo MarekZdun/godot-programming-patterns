@@ -1,0 +1,92 @@
+[gd_scene load_steps=6 format=3 uid="uid://dldjfaews8m2n"]
+
+[ext_resource type="Script" path="res://ec/work/shop.gd" id="1_jcwta"]
+[ext_resource type="PackedScene" uid="uid://csugmkolhohwh" path="res://ec/work/components/interactable_area_2d_component.tscn" id="2_sscfv"]
+[ext_resource type="PackedScene" uid="uid://bhlsy7sq2bq4g" path="res://ec/work/components/focusable_component.tscn" id="3_wih3p"]
+[ext_resource type="PackedScene" uid="uid://bc2e320g5a84h" path="res://ec/work/focusable_show_label_in_2d.tscn" id="4_jpvme"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5omwp"]
+size = Vector2(128, 192)
+
+[node name="Shop" type="Node2D"]
+script = ExtResource("1_jcwta")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.376471, 0.184314, 0.184314, 1)
+polygon = PackedVector2Array(-64, 0, 64, 0, 64, -192, 0, -256, -64, -192)
+
+[node name="FocusableAnchor" type="Marker2D" parent="."]
+position = Vector2(0, -256)
+
+[node name="Interactable2dComponent" parent="." node_paths=PackedStringArray("agent", "focusable_component") instance=ExtResource("2_sscfv")]
+agent = NodePath("..")
+focusable_component = NodePath("../FocusableComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable2dComponent"]
+position = Vector2(0, -96)
+shape = SubResource("RectangleShape2D_5omwp")
+
+[node name="FocusableComponent" parent="." node_paths=PackedStringArray("focusable_parent") instance=ExtResource("3_wih3p")]
+focusable_packed_scene = ExtResource("4_jpvme")
+focusable_parent = NodePath("../FocusableAnchor")
+
+[node name="ShopUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -320.0
+offset_bottom = -320.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="ShopUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -28.0
+offset_right = 96.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 4
+
+[node name="Button" type="Button" parent="ShopUI/GridContainer"]
+layout_mode = 2
+text = "Item"
+
+[node name="Button2" type="Button" parent="ShopUI/GridContainer"]
+layout_mode = 2
+text = "Item"
+
+[node name="Button3" type="Button" parent="ShopUI/GridContainer"]
+layout_mode = 2
+text = "Item"
+
+[node name="Button4" type="Button" parent="ShopUI/GridContainer"]
+layout_mode = 2
+text = "Item"
+
+[node name="Button5" type="Button" parent="ShopUI/GridContainer"]
+layout_mode = 2
+text = "Item"
+
+[node name="Button6" type="Button" parent="ShopUI/GridContainer"]
+layout_mode = 2
+text = "Item"
+
+[node name="Button7" type="Button" parent="ShopUI/GridContainer"]
+layout_mode = 2
+text = "Item"
+
+[node name="Button8" type="Button" parent="ShopUI/GridContainer"]
+layout_mode = 2
+text = "Item"

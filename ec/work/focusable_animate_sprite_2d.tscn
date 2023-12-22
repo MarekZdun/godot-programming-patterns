@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnboebwdhg2wa"]
+
+[ext_resource type="Script" path="res://ec/work/focusable_animate_sprite_2d.gd" id="1_7q6l3"]
+[ext_resource type="Texture2D" uid="uid://bbvbulqlg2x74" path="res://icon.svg" id="1_a11pt"]
+
+[node name="FocusableAnimateSprite2d" type="Node2D"]
+script = ExtResource("1_7q6l3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_a11pt")

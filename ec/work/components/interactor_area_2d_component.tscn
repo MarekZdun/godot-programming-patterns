@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c2xd1fexdyl4u"]
+
+[ext_resource type="Script" path="res://ec/work/components/interactor_area_2d_component.gd" id="1_s07mt"]
+
+[node name="Interactor2dComponent" type="Area2D"]
+monitorable = false
+script = ExtResource("1_s07mt")

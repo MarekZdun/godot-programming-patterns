@@ -104,3 +104,18 @@ class FireDamageable:
 class WaterDamageable:
 	func take_water_damage(attack: AttackUpdate):
 		pass
+		
+		
+class Focusable:
+	signal unfocused
+	
+	func focus(interactor_component: Node, interactable_component: Node):
+		pass
+		
+		
+	func unfocus(interactor_component: Node, interactable_component: Node):
+		pass
+		
+		
+	func get_intended_parent():
+		pass

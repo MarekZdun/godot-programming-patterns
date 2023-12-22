@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhlsy7sq2bq4g"]
+
+[ext_resource type="Script" path="res://ec/work/components/focusable_component.gd" id="1_natb7"]
+
+[node name="FocusableComponent" type="Node"]
+script = ExtResource("1_natb7")

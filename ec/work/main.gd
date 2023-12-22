@@ -8,6 +8,7 @@ var _bullet_start_rot: float
 @onready var health_display = $HealthDisplay
 @onready var floor = $Floor
 @onready var bullet: Bullet = $Bullet
+@onready var hud = $HUD
 
 
 func _ready():
